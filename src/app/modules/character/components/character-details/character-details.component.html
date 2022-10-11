@@ -1,0 +1,33 @@
+<div class="card">
+
+    <img mat-card-image [src]="character?.image" [alt]="character?.name">
+
+    <h3>
+        <b> {{character?.name}}</b>
+    </h3>
+    <p>
+        {{character?.status}} - {{character?.species}}
+    </p>
+    <p>
+        {{character?.gender}}
+    </p>
+    <p>
+        {{character?.created|date}}
+    </p>
+    <p>
+        Last known location: - {{character?.location?.name}}
+      
+        <a routerLink="/location-list">  {{character?.location?.url}}</a>
+    </p>
+
+  <span *ngIf="character?.characters">
+    <p>characters:
+    </p>
+    <ul>
+        <li *ngFor="let character of character?.characters">
+            {{character}}
+        </li>
+    </ul>
+  </span>
+
+</div>

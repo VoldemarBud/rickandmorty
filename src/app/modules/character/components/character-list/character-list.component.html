@@ -1,0 +1,27 @@
+<div class="flex">
+
+    <mat-card class="example-card" *ngFor="let character of characters">
+        <a [routerLink]="['/character', character.id]">
+            <img mat-card-image [src]="character.image" [alt]="character.name">
+        </a>
+       
+        <mat-card-content>
+            <mat-card-title>
+            
+            </mat-card-title>
+            <p>
+                {{character.status}}
+            </p>
+            <p>
+                {{character.gender}}
+            </p>
+            <p>
+                {{character.created|date}}
+            </p>
+        </mat-card-content>
+
+    </mat-card>
+    <p *ngIf="characters.length <= 0">
+        No Data...
+    </p>
+</div>
