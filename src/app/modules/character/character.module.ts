@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CharacterListComponent } from './components/character-list/character-list.component';
 import { CharacterDetailsComponent } from './components/character-details/character-details.component';
-
+import {MatGridListModule} from '@angular/material/grid-list'
 import {MatCardModule} from '@angular/material/card';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 
@@ -15,6 +15,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
   imports: [
     CommonModule,
     MatCardModule,
+    MatGridListModule,
     AppRoutingModule
   ],
   exports: [
