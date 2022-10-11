@@ -1,7 +1,0 @@
-.flex {
-    display: flex;
-    margin: 10px;
-    justify-content: space-between;
-    gap: 10px;
-    flex-wrap: wrap;
-}
