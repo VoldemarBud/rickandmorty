@@ -4,10 +4,13 @@
         <a [routerLink]="['/character', character.id]">
             <img mat-card-image [src]="character.image" [alt]="character.name">
         </a>
-       
+
         <mat-card-content>
             <mat-card-title>
-            
+
+                <a [routerLink]="['/character', character.id]">
+                    <p>{{character.name}}</p>
+                </a>
             </mat-card-title>
             <p>
                 {{character.status}}

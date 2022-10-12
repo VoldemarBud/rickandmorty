@@ -7,7 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { HeaderComponent } from './components/header/header.component';
-import { CharacterModule } from './modules/character/character.module';
+import { CharactersModule } from './modules/character/characters.module';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -16,11 +21,25 @@ import { CharacterModule } from './modules/character/character.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    // AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     MatToolbarModule,
-    CharacterModule
+    RouterModule.forRoot([
+      {
+        path: ' ',
+        redirectTo: 'character-list'
+      },
+      {
+        path:'**',
+        redirectTo: 'character-list'
+      }
+    ]),
+    CharactersModule,
+    StoreModule.forRoot({}, {
+    }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]
