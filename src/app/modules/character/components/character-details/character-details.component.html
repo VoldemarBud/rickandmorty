@@ -17,13 +17,14 @@
                 species:
                 <input type="text" name="species" [defaultValue]="character?.species">
             </label>
-
+     
             <label>
                 gender:
                 <input type="text" name="gender" [defaultValue]="character?.gender">
             </label>
             <label>
                 created:
+                <!-- <input type="datetime" name="created" [defaultValue]="character?.created|date:'yyyy-MM-dd hh.mm.ss'"> -->
                 <input type="datetime" name="created" [defaultValue]="character?.created">
             </label>
 
@@ -37,7 +38,7 @@
                 <!-- <a routerLink="/location-list"> {{character?.location?.url}}</a> -->
             </p>
 
-            <button>Save Change</button>
+            <button mat-button >Save Change</button>
         </form>
     </mat-grid-tile>
 </mat-grid-list>

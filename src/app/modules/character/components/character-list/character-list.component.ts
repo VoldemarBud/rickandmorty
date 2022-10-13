@@ -1,8 +1,5 @@
-
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { take } from 'rxjs';
-import { HttpReq } from 'src/app/http/http';
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { ICharacter } from '../../characters.interface';
 
 
@@ -11,26 +8,14 @@ import { ICharacter } from '../../characters.interface';
   templateUrl: './character-list.component.html',
   styleUrls: ['./character-list.component.css']
 })
-export class CharacterListComponent implements OnInit {
+export class CharacterListComponent {
+  characters: ICharacter[] = [];
 
-
-  characters: ICharacter[] = []
-
-  constructor(private httpReq: HttpReq) { }
-
-  ngOnInit(): void {
-    this.getCharacters();
+  constructor(private store: Store<any>) {
+    this.store.select('characters').subscribe(data => {
+      this.characters = data.charactersList
+    });
   }
 
-  getCharacters() {
-    this.httpReq.getCharacterList().subscribe((res: any) => {
-      if (res?.results?.length) {
-        const { info, results } = res;
-        this.characters = [...this.characters, ...results]
-      } else {
-        this.characters = [];
-      }
-    })
-  }
 }
 

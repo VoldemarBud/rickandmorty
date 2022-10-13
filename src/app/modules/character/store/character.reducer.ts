@@ -1,27 +1,42 @@
 
 import { ICharacter } from "../characters.interface";
-import { characterAction, characterActionsType } from "./character.action";
-import { INITIAL_STATE } from '@ngrx/store';
+import { getCharacter, getCharacterList, setNewCharacterInfo } from "./character.action";
+import { createReducer, on } from '@ngrx/store';
+
 export const CHARACTER_REDUCER_NODE = 'characters';
 
 export interface charactersState {
-    charactersList: ICharacter[],
-    character: ICharacter | {}
+    charactersList: ICharacter[] | [],
+    character?: ICharacter | {}
 }
 const initialCharactersState: charactersState = {
-    charactersList: [],
-    character: {}
+    charactersList: []
 }
 
-export const charactersReducer = (state = initialCharactersState,
-    action: characterAction) => {
-    switch (action.type) {
-        case characterActionsType.getCharacter:
-            return {
-                ...state,
-                charactersList: [...state.charactersList]
-            }
-        default:
-            return state;
+export const charactersReducer = createReducer(
+    initialCharactersState,
+    on(getCharacterList, (state, { data }) => ({
+        ...state,
+        charactersList: data
+    })),
+    on(getCharacter, (state, { index }) => ({
+        ...state,
+        character: state.charactersList[index]
+    })),
+
+    on(setNewCharacterInfo, (state, { data, index }) => {
+
+        return ({
+            ...state,
+            charactersList: state.charactersList.map((element, i) => {
+                if (i == index) {
+                    return element = data
+                }
+                return element
+            }),
+
+            character: data
+        })
     }
-}
+    )
+);

@@ -1,7 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { HttpReq } from 'src/app/http/http';
+import { Store } from '@ngrx/store';
+import { DialogConfirmComponent } from 'src/app/components/dialog-confirm/dialog-confirm.component';
 import { ICharacter } from '../../characters.interface';
+import { getCharacter, setNewCharacterInfo } from '../../store/character.action';
 
 @Component({
   selector: 'app-character-details',
@@ -9,37 +12,61 @@ import { ICharacter } from '../../characters.interface';
   styleUrls: ['./character-details.component.css']
 })
 export class CharacterDetailsComponent implements OnInit, OnDestroy {
-  id!: number;
+  index!: number;
   private sub: any;
-  character: ICharacter | null = null;
+  character!: ICharacter
 
-  constructor(private httpReq: HttpReq, private route: ActivatedRoute) { }
-
-  ngOnInit(): void {
-    if (!this.character) {
-      this.sub = this.route.params.subscribe(param => {
-        this.id = +param['id']
-      })
-      this.getCharacter(this.id)
-    }
+  constructor(private store$: Store<any>, private route: ActivatedRoute,
+    public dialog: MatDialog) {
+    this.store$.select('characters').subscribe(data => {
+      this.character = data.character
+    });
+    
   }
 
-  getCharacter(id: number) {
-    this.httpReq.getCharacter(id).subscribe((res: any) => {
-      this.character = res;
-    })
+
+  ngOnInit(): void {
+    this.loadCharacter();
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
 
+  loadCharacter() {
+    this.sub = this.route.params.subscribe(param => {
+      this.index = +param['id']
+    })
+    this.store$.dispatch(getCharacter({ index: this.index }));
+  }
+
   saveChange(data: any) {
-    this.character!.name = data.name.value;
-    this.character!.status = data.status.value;
-    this.character!.species = data.species.value;
-    this.character!.gender = data.gender.value;
-    this.character!.created = data.created.value;
-    this.character!.location!.name = data.locationName.value;
+    const dialogRef = this.dialog.open(DialogConfirmComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        let { name, status, species, gender, created, locationName } = data
+
+        this.character = {
+          id: this.character.id,
+          name: `${name.value}`,
+          status: `${status.value}`,
+          species: `${species.value}`,
+          gender: `${gender.value}`,
+          image: this.character.image,
+          location: {
+            name: `${locationName.value}`,
+            url: this.character.location.url
+          },
+          created: `${created.value}`,
+    
+        }
+    
+    
+        this.store$.dispatch(setNewCharacterInfo({ data: this.character, index: this.index }));
+    
+      }
+    });
+  
+
   }
 }

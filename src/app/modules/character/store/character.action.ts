@@ -1,15 +1,15 @@
-import { Action } from "@ngrx/store";
+import { createAction, props } from "@ngrx/store";
 import { ICharacter } from "../characters.interface";
 
-export enum characterActionsType {
-    getCharacter = '[CHARACTER] get character list'
-}
+export const getCharacterList = createAction('[CHARACTER] get character list',
+    props<{ data: ICharacter[] }>()
+);
 
-export class characterCreateAction implements Action {
-    readonly type = characterActionsType.getCharacter
+export const getCharacter = createAction('[CHARACTER] get character',
+    props<{ index: number }>()
+);
 
-    constructor(public payload:ICharacter[]) {
 
-    }
-}
-export type characterAction = characterCreateAction;
+export const setNewCharacterInfo = createAction('[CHARACTER] set new character info',
+    props<{ data: ICharacter,index: number }>()
+);
