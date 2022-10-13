@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { DialogConfirmComponent } from 'src/app/components/dialog-confirm/dialog-confirm.component';
 import { ICharacter } from '../../characters.interface';
-import { getCharacter, setNewCharacterInfo } from '../../store/character.action';
+import { deleteCharacter, getCharacter, setNewCharacterInfo } from '../../store/character.action';
 
 @Component({
   selector: 'app-character-details',
@@ -16,12 +16,12 @@ export class CharacterDetailsComponent implements OnInit, OnDestroy {
   private sub: any;
   character!: ICharacter
 
-  constructor(private store$: Store<any>, private route: ActivatedRoute,
+  constructor(private store$: Store<any>,private router:Router, private route: ActivatedRoute,
     public dialog: MatDialog) {
     this.store$.select('characters').subscribe(data => {
       this.character = data.character
     });
-    
+
   }
 
 
@@ -43,7 +43,7 @@ export class CharacterDetailsComponent implements OnInit, OnDestroy {
   saveChange(data: any) {
     const dialogRef = this.dialog.open(DialogConfirmComponent);
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
+      if (result) {
         let { name, status, species, gender, created, locationName } = data
 
         this.character = {
@@ -58,15 +58,23 @@ export class CharacterDetailsComponent implements OnInit, OnDestroy {
             url: this.character.location.url
           },
           created: `${created.value}`,
-    
+
         }
-    
-    
+
+
         this.store$.dispatch(setNewCharacterInfo({ data: this.character, index: this.index }));
-    
+
       }
     });
-  
+  }
 
+  deleteCharacterElement() {
+    const dialogRef = this.dialog.open(DialogConfirmComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.store$.dispatch(deleteCharacter({ index: this.index }));
+        this.router.navigate(['/']);
+      }
+    })
   }
 }

@@ -9,7 +9,10 @@ export const getCharacter = createAction('[CHARACTER] get character',
     props<{ index: number }>()
 );
 
-
 export const setNewCharacterInfo = createAction('[CHARACTER] set new character info',
     props<{ data: ICharacter,index: number }>()
 );
+
+export const deleteCharacter = createAction('[CHARACTER] delete character',
+    props<{ index: number }>()
+)

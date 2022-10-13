@@ -1,6 +1,6 @@
 
 import { ICharacter } from "../characters.interface";
-import { getCharacter, getCharacterList, setNewCharacterInfo } from "./character.action";
+import { deleteCharacter, getCharacter, getCharacterList, setNewCharacterInfo } from "./character.action";
 import { createReducer, on } from '@ngrx/store';
 
 export const CHARACTER_REDUCER_NODE = 'characters';
@@ -25,7 +25,6 @@ export const charactersReducer = createReducer(
     })),
 
     on(setNewCharacterInfo, (state, { data, index }) => {
-
         return ({
             ...state,
             charactersList: state.charactersList.map((element, i) => {
@@ -34,9 +33,16 @@ export const charactersReducer = createReducer(
                 }
                 return element
             }),
-
             character: data
         })
-    }
-    )
+    }),
+    on(deleteCharacter, (state, { index }) => ({
+        ...state,
+        charactersList: state.charactersList.filter((element, i) => {
+            if (i != index) {
+                return true;
+            }
+            return false
+        }),
+    }))
 );
