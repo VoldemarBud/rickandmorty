@@ -1,4 +1,4 @@
-<mat-grid-list cols="2" gutterSize="10px">
+<mat-grid-list *ngIf="character" cols="2" gutterSize="10px">
     <mat-grid-tile>
         <img mat-card-image [src]="character?.image" [alt]="character?.name">
     </mat-grid-tile>
@@ -41,7 +41,11 @@
 
                 <button mat-button>Save Change</button>
             </form>
+
             <button (click)="deleteCharacterElement()" mat-button>delete</button>
         </div>
     </mat-grid-tile>
+</mat-grid-list>
+<mat-grid-list *ngIf="!character">
+    <p> No Data...</p>
 </mat-grid-list>
