@@ -5,22 +5,20 @@ import { Store } from '@ngrx/store';
 import { DialogConfirmComponent } from 'src/app/components/dialog-confirm/dialog-confirm.component';
 import { DialogFormLocationComponent } from 'src/app/components/dialog-form-location/dialog-form-location.component';
 import { DialogLocationInfoComponent } from 'src/app/components/dialog-location-info/dialog-location-info.component';
-import { HttpReq } from 'src/app/http/http';
 import { ILocations } from '../../locations.interface';
 
-import { addNewLocation, deleteLocation, getLocationsList } from '../../store/locations.actions';
+import { addNewLocation, deleteLocation } from '../../store/locations.actions';
 
 @Component({
   selector: 'app-locations-list',
   templateUrl: './locations-list.component.html',
   styleUrls: ['./locations-list.component.css']
 })
-export class LocationsListComponent implements OnInit {
+export class LocationsListComponent {
   locations: ILocations[] = [];
   location!: ILocations
 
   constructor(private store$: Store<any>,
-    private httpReq: HttpReq,
     public dialog: MatDialog,
     private router: Router) {
     this.store$.select('locations').subscribe(data => {
@@ -28,14 +26,7 @@ export class LocationsListComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.httpReq.getLocationsList().subscribe((res: any) => {
-      if (res?.results?.length) {
-        const { info, results } = res;
-        this.store$.dispatch(getLocationsList({ data: results }));
-      }
-    })
-  }
+
 
   addNewLocationElement() {
     const dialogRef = this.dialog.open(DialogFormLocationComponent, {
