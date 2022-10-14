@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { HttpReq } from './http/http';
 
 import { getCharacterList } from './modules/character/store/character.action';
+import { getLocationsList } from './modules/locations/store/locations.actions';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,13 @@ export class AppComponent implements OnInit {
         const { info, results } = res;
         this.store$.dispatch(getCharacterList({ data: results }));
       }
+
+      this.httpReq.getLocationsList().subscribe((res: any) => {
+        if (res?.results?.length) {
+          const { info, results } = res;
+          this.store$.dispatch(getLocationsList({ data: results }));
+        }
+      })
     })
   }
 }
