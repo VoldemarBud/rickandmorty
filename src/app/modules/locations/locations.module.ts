@@ -5,13 +5,19 @@ import { StoreModule } from '@ngrx/store';
 import { RouterModule } from '@angular/router';
 
 import { MatListModule } from '@angular/material/list';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { locationsReducer, LOCATIONS_REDUCER_NODE } from './store/locations.reducer';
+import { DialogFormLocationComponent } from 'src/app/components/dialog-form-location/dialog-form-location.component';
+import { FormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
   declarations: [
-    LocationsListComponent
+
+    DialogFormLocationComponent, LocationsListComponent
   ],
   imports: [
     CommonModule,
@@ -24,10 +30,14 @@ import { locationsReducer, LOCATIONS_REDUCER_NODE } from './store/locations.redu
         component: LocationsListComponent
       },
     ]),
-    MatListModule
+    FormsModule,
+    MatDialogModule,
+    MatListModule,
+    MatInputModule ,
+    MatFormFieldModule
   ],
   exports: [
-    LocationsListComponent
+    DialogFormLocationComponent, LocationsListComponent
   ]
 })
 export class LocationsModule { }

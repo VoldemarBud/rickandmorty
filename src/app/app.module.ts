@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
 
 import { environment } from '../environments/environment';
 
@@ -16,12 +16,13 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { RouterModule } from '@angular/router';
 
+import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { DialogConfirmComponent } from './components/dialog-confirm/dialog-confirm.component';
+import { DialogLocationInfoComponent } from './components/dialog-location-info/dialog-location-info.component';
 
 import { LocationsModule } from './modules/locations/locations.module';
 import { CharactersModule } from './modules/character/characters.module';
-import { DialogLocationInfoComponent } from './components/dialog-location-info/dialog-location-info.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { DialogLocationInfoComponent } from './components/dialog-location-info/d
     BrowserModule,
     // AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
     HttpClientModule,
     MatDialogModule,
     MatToolbarModule,

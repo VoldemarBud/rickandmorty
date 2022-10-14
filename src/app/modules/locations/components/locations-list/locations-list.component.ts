@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { DialogConfirmComponent } from 'src/app/components/dialog-confirm/dialog-confirm.component';
+import { DialogFormLocationComponent } from 'src/app/components/dialog-form-location/dialog-form-location.component';
 import { DialogLocationInfoComponent } from 'src/app/components/dialog-location-info/dialog-location-info.component';
 import { HttpReq } from 'src/app/http/http';
 import { ILocations } from '../../locations.interface';
 
-import { deleteLocation, getLocationsList } from '../../store/locations.actions';
+import { addNewLocation, deleteLocation, getLocationsList } from '../../store/locations.actions';
 
 @Component({
   selector: 'app-locations-list',
@@ -16,6 +17,7 @@ import { deleteLocation, getLocationsList } from '../../store/locations.actions'
 })
 export class LocationsListComponent implements OnInit {
   locations: ILocations[] = [];
+  location!: ILocations
 
   constructor(private store$: Store<any>,
     private httpReq: HttpReq,
@@ -24,7 +26,6 @@ export class LocationsListComponent implements OnInit {
     this.store$.select('locations').subscribe(data => {
       this.locations = data.locationsList
     });
-
   }
 
   ngOnInit(): void {
@@ -35,6 +36,26 @@ export class LocationsListComponent implements OnInit {
       }
     })
   }
+
+  addNewLocationElement() {
+    const dialogRef = this.dialog.open(DialogFormLocationComponent, {
+      width: '250px',
+      data: <ILocations>{}
+    });
+
+
+    dialogRef.afterClosed().subscribe(result => {
+      result.url = 'https://rickandmortyapi.com/api/location/' + result.url;
+      result.created = new Date();
+      result.id = this.locations[this.locations.length - 1].id + 1
+
+      console.log(result);
+
+      this.store$.dispatch(addNewLocation({ data: result }));
+    });
+
+  }
+
   deleteLocationElement(index: number) {
     const dialogRef = this.dialog.open(DialogConfirmComponent);
     dialogRef.afterClosed().subscribe(result => {
@@ -46,9 +67,6 @@ export class LocationsListComponent implements OnInit {
   }
 
   openDialog(data: ILocations) {
-    this.dialog.open(DialogLocationInfoComponent, {
-      data
-    });
-
+    this.dialog.open(DialogLocationInfoComponent, { data });
   }
 }

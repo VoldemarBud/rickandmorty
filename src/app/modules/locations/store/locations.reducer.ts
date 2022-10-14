@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { ILocations } from "../locations.interface";
-import { deleteLocation, getLocationsList } from "./locations.actions";
+import { addNewLocation, deleteLocation, getLocationsList } from "./locations.actions";
 
 export const LOCATIONS_REDUCER_NODE = 'locations';
 
@@ -19,6 +19,10 @@ export const locationsReducer = createReducer(
     on(getLocationsList, (state, { data }) => ({
         ...state,
         locationsList: data
+    })),
+    on(addNewLocation, (state, { data }) => ({
+        ...state,
+        locationsList: [...state.locationsList, data]
     })),
     on(deleteLocation, (state, { index }) => ({
         ...state,
