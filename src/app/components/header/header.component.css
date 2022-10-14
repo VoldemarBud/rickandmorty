@@ -10,3 +10,8 @@ a {
     color: goldenrod;
     text-decoration: none;
 }
+
+a>span{
+    color: #fff;
+    padding-left: 0;
+}
