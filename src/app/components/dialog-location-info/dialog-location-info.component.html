@@ -1,0 +1,12 @@
+<h2 align="center" mat-dialog-title>{{data.url}}</h2>
+<mat-dialog-content class="mat-typography">
+    <p>Name: {{data.name}} - type: {{data.type}}</p>
+    <p>Created: {{data.created|date:"yyyy-MM-dd hh:mm:ss"}}</p>
+    <mat-list role="list">
+        <mat-list-item *ngFor="let character of data.residents" role="listitem">
+            <p>
+                {{character}}
+            </p>
+        </mat-list-item>
+    </mat-list>
+</mat-dialog-content>

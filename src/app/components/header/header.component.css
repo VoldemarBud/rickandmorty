@@ -1,0 +1,12 @@
+.navbar {
+    justify-content: space-between;
+}
+
+span {
+    padding-left: 1rem;
+}
+
+a {
+    color: goldenrod;
+    text-decoration: none;
+}
