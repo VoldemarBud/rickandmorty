@@ -14,6 +14,11 @@ export class DialogFormLocationComponent {
     // @Inject(MAT_DIALOG_DATA) public data: Locations,
   ) { }
   onSave(data: any) {
+
+    const newlocation = {
+      ...data,
+      url: 'https://rickandmortyapi.com/api/location/' + data.url
+    }
     data.url = 'https://rickandmortyapi.com/api/location/' + data.url;
     data.created = new Date();
     data.confirm = true

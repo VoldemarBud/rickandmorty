@@ -2,22 +2,28 @@
 <div mat-dialog-content>
   <p>Fill out the form</p>
   <form #locationForm="ngForm" (ngSubmit)="onSave(locationForm.value)">
+
     <mat-form-field appearance="fill">
       <mat-label>url</mat-label>
-      <input name="url" matInput ngModel>
+      <input type="text" name="url" #url="ngModel" matInput ngModel required>
+
+      <span *ngIf="!url.valid">Required field !</span>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Name</mat-label>
-      <input name="name" matInput ngModel>
+      <input type="text" #locationName="ngModel"  name="locationName" 
+       matInput ngModel required>
+      <span *ngIf="!locationName.valid">Required field !</span>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>type</mat-label>
-      <input name="type" matInput ngModel>
+      <input type="text" name="type" matInput #type="ngModel" required (ngModel)="type" ngModel>
+      <span *ngIf="!type.valid">Required field !</span>
     </mat-form-field>
 
-    <button mat-button>Ok</button>
+    <button mat-button [disabled]="locationForm.invalid">Ok</button>
   </form>
 </div>
 <div mat-dialog-actions>
