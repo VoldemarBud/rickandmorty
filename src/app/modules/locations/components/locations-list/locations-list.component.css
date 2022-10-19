@@ -1,0 +1,19 @@
+p{
+    margin: 0;
+    cursor: pointer;
+}
+
+button{
+    cursor: pointer;
+    margin-left: 15px;
+    color: red;
+    font-size: 15px;
+    font-weight: bold;
+    background: 0;
+    border: 0;
+}
+
+button.create{
+    color: green;
+    margin: 10px 0;
+}
