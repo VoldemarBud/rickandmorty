@@ -35,14 +35,13 @@ export class LocationsListComponent {
     });
 
 
-    dialogRef.afterClosed().subscribe(result => {
-      result.url = 'https://rickandmortyapi.com/api/location/' + result.url;
-      result.created = new Date();
-      result.id = this.locations[this.locations.length - 1].id + 1
+    dialogRef.afterClosed().subscribe(data => {
 
-      console.log(result);
+      if (data.confirm) {
+        console.log(data)
+      }
 
-      this.store$.dispatch(addNewLocation({ data: result }));
+      this.store$.dispatch(addNewLocation({ data }));
     });
 
   }

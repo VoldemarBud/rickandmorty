@@ -22,7 +22,10 @@ export const locationsReducer = createReducer(
     })),
     on(addNewLocation, (state, { data }) => ({
         ...state,
-        locationsList: [...state.locationsList, data]
+        locationsList: [...state.locationsList, {
+            ...data,
+            id: state.locationsList[state.locationsList.length - 1].id + 1
+        }]
     })),
     on(deleteLocation, (state, { id }) => ({
         ...state,

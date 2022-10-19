@@ -11,10 +11,18 @@ export class DialogFormLocationComponent {
 
   constructor(
     public dialogRef: MatDialogRef<DialogFormLocationComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Locations,
-  ) {}
+    // @Inject(MAT_DIALOG_DATA) public data: Locations,
+  ) { }
+  onSave(data: any) {
+    data.url = 'https://rickandmortyapi.com/api/location/' + data.url;
+    data.created = new Date();
+    data.confirm = true
+    console.log(data)
 
+
+    // this.dialogRef.close(data);
+  }
   onCancel(): void {
-    this.dialogRef.close();
+    this.dialogRef.close({ confirm: false });
   }
 }

@@ -38,7 +38,7 @@ export const charactersReducer = createReducer(
     }),
     on(deleteCharacter, (state, { id }) => ({
         ...state,
-        charactersList: state.charactersList.filter((element, i) => {
+        charactersList: state.charactersList.filter((element) => {
             if (element.id != id) {
                 return true;
             }

@@ -9,7 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { locationsReducer, LOCATIONS_REDUCER_NODE } from './store/locations.reducer';
 import { DialogFormLocationComponent } from 'src/app/components/dialog-form-location/dialog-form-location.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LocationsRoutingModule } from './locations-routing.module';
 
@@ -26,6 +26,7 @@ import { LocationsRoutingModule } from './locations-routing.module';
     ),
     LocationsRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     MatDialogModule,
     MatListModule,
     MatInputModule ,
