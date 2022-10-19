@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { DialogConfirmComponent } from 'src/app/components/dialog-confirm/dialog-confirm.component';
 import { HttpReq } from 'src/app/http/http';
 import { Character } from '../../store/modules/characters';
-import { deleteCharacter, } from '../../store/character.action';
+import { deleteCharacter, getCharacter, setNewCharacterInfo } from '../../store/character.action';
 
 @Component({
   selector: 'app-character-details',
@@ -13,7 +13,6 @@ import { deleteCharacter, } from '../../store/character.action';
   styleUrls: ['./character-details.component.css']
 })
 export class CharacterDetailsComponent implements OnDestroy {
-  id: number;
   private sub: any;
   character: Character
 
@@ -34,23 +33,22 @@ export class CharacterDetailsComponent implements OnDestroy {
 
   loadCharacter() {
     this.sub = this.route.params.subscribe(param => {
- 
-    this.httpReq.getCharacter(+param['id']).subscribe((res: any) => {
-      if (res) {
-        this.character = res;
-      }
-    })
 
-  })
+      this.httpReq.getCharacter(+param['id']).subscribe((res: any) => {
+        if (res) {
+          this.character = res;
+        }
+      })
+    })
   }
 
-  
 
-  deleteCharacterElement() {
+
+  deleteCharacterElement(id: number) {
     const dialogRef = this.dialog.open(DialogConfirmComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.store$.dispatch(deleteCharacter({ id: this.id }));
+        this.store$.dispatch(deleteCharacter({ id }));
         this.router.navigate(['/']);
       }
     })
