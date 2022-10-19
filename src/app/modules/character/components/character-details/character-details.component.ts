@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { DialogConfirmComponent } from 'src/app/components/dialog-confirm/dialog-confirm.component';
 import { HttpReq } from 'src/app/http/http';
 import { Character } from '../../store/modules/characters';
-import { deleteCharacter, getCharacter, setNewCharacterInfo } from '../../store/character.action';
+import { deleteCharacter, } from '../../store/character.action';
 
 @Component({
   selector: 'app-character-details',
@@ -44,31 +44,7 @@ export class CharacterDetailsComponent implements OnDestroy {
   })
   }
 
-  saveChange(data: any) {
-    const dialogRef = this.dialog.open(DialogConfirmComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        let { name, status, species, gender, created, locationName } = data
-
-        const character = {
-          id: this.character.id,
-          name: `${name.value}`,
-          status: `${status.value}`,
-          species: `${species.value}`,
-          gender: `${gender.value}`,
-          image: this.character.image,
-          location: {
-            name: `${locationName.value}`,
-            url: this.character.location.url
-          },
-          created: `${created.value}`,
-
-        }
-        this.store$.dispatch(setNewCharacterInfo({ data: character }));
-
-      }
-    });
-  }
+  
 
   deleteCharacterElement() {
     const dialogRef = this.dialog.open(DialogConfirmComponent);
