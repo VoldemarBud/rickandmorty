@@ -20,8 +20,8 @@ import { CharacterRoutingModule } from './character-routing.module';
     CommonModule,
     MatCardModule,
     MatGridListModule,
-    FormsModule,                      
-    ReactiveFormsModule,
+    // FormsModule,                      
+    // ReactiveFormsModule,
     CharacterRoutingModule,
     StoreModule.forFeature(
       CHARACTER_REDUCER_NODE,

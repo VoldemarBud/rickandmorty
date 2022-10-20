@@ -1,19 +1,19 @@
 
 import { Component, OnInit } from '@angular/core';
 
-import { CharacterService } from './modules/character/character.service';
-import { LocationsService } from './modules/locations/locations.service';
+import { CharacterRequestService } from './modules/character/character-request.service';
+import { LocationsRequestService } from './modules/locations/locations-request.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [CharacterService, LocationsService]
+  providers: [CharacterRequestService, LocationsRequestService]
 })
 export class AppComponent implements OnInit {
 
 
-  constructor(private characterService: CharacterService, private locationsService: LocationsService) {
+  constructor(private characterService: CharacterRequestService, private locationsService: LocationsRequestService) {
   }
   ngOnInit(): void {
     this.characterService.getList();
