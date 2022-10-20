@@ -54,7 +54,6 @@ export class DialogFormLocationComponent {
       url: 'https://rickandmortyapi.com/api/location/' + this.locationFormModel.value.url
     })
 
-
     // this.dialogRef.close(newlocation);
   }
   onCancel(): void {
