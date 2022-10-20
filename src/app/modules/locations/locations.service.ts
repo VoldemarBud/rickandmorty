@@ -7,7 +7,7 @@ import { getLocationsList } from './store/locations.actions';
 
 @Injectable()
 export class LocationsService {
-    constructor(private store$: Store<{ charactersList: [] }>,
+    constructor(private store$: Store<{ locationsList: [] }>,
         private httpReq: HttpReq) {
     }
     getList() {
