@@ -4,21 +4,22 @@
   <form [formGroup]="locationFormModel" (ngSubmit)="onSubmit()">
 
     <mat-form-field appearance="fill">
+      <mat-hint>minLength: 2</mat-hint>
       <mat-label>url</mat-label>
       <input type="text" matInput formControlName="url">
-      <!-- <mat-hint>Required field !</mat-hint> -->
+    
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Name</mat-label>
       <input type="text" matInput formControlName="name">
-      <!-- <mat-hint>Required field !</mat-hint> -->
+      <mat-hint>minLength: 4</mat-hint>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>type</mat-label>
       <input type="text" matInput formControlName="type">
-      <!-- <mat-hint >Required field !</mat-hint> -->
+      <mat-hint>minLength: 3</mat-hint>
     </mat-form-field>
 
     <mat-form-field appearance="fill">

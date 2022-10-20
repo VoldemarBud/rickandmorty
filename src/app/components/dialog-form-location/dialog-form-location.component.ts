@@ -19,7 +19,7 @@ export class DialogFormLocationComponent {
         Validators.minLength(2)]),
       name: new FormControl('', [
         Validators.required,
-        Validators.minLength(5)]),
+        Validators.minLength(4)]),
       type: new FormControl('', [
         Validators.required,
         Validators.minLength(3)]),
