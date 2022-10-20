@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { CharacterService } from './modules/character/character.service';
-import { LocationsService } from './modules/locations/character.service';
+import { LocationsService } from './modules/locations/locations.service';
 
 @Component({
   selector: 'app-root',
