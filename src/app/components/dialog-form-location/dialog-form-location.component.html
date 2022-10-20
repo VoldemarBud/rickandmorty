@@ -1,34 +1,36 @@
 <h1 mat-dialog-title>Create Location</h1>
 <div mat-dialog-content>
   <p>Fill out the form</p>
-  <form #locationForm="ngForm" (ngSubmit)="onSave(locationForm.value)">
+  <form [formGroup]="locationFormModel" (ngSubmit)="onSubmit()">
 
     <mat-form-field appearance="fill">
       <mat-label>url</mat-label>
-      <input type="text" name="url" #url="ngModel" matInput ngModel required>
-
-      <span *ngIf="!url.valid">Required field !</span>
+      <input type="text" matInput formControlName="url">
+      <!-- <mat-hint>Required field !</mat-hint> -->
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Name</mat-label>
-      <input type="text" #locationName="ngModel"  name="locationName" 
-       matInput ngModel required>
-      <span *ngIf="!locationName.valid">Required field !</span>
+      <input type="text" matInput formControlName="name">
+      <!-- <mat-hint>Required field !</mat-hint> -->
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>type</mat-label>
-      <input type="text" name="type" matInput #type="ngModel" required (ngModel)="type" ngModel>
-      <span *ngIf="!type.valid">Required field !</span>
+      <input type="text" matInput formControlName="type">
+      <!-- <mat-hint >Required field !</mat-hint> -->
     </mat-form-field>
 
-    <button mat-button [disabled]="locationForm.invalid">Ok</button>
+    <mat-form-field appearance="fill">
+      <mat-label>created</mat-label>
+      <input matInput formControlName="created"  [matDatepicker]="created">
+      <!-- <mat-hint>Required field !</mat-hint> -->
+      <mat-datepicker-toggle matSuffix [for]="created"></mat-datepicker-toggle>
+      <mat-datepicker #created></mat-datepicker>
+    </mat-form-field>
+    <button type="submit" [disabled]="!locationFormModel.valid" mat-button>Ok</button>
   </form>
 </div>
 <div mat-dialog-actions>
-
-
-
   <button mat-button (click)="onCancel()">Cancel</button>
 </div>

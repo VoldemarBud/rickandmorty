@@ -30,18 +30,14 @@ export class LocationsListComponent {
 
   addNewLocationElement() {
     const dialogRef = this.dialog.open(DialogFormLocationComponent, {
-      width: '250px',
-      data: <Locations>{}
+      width: '300px'
     });
 
 
     dialogRef.afterClosed().subscribe(data => {
-
-      if (data.confirm) {
-        console.log(data)
+      if (data) {
+        this.store$.dispatch(addNewLocation({ data }));
       }
-
-      this.store$.dispatch(addNewLocation({ data }));
     });
 
   }

@@ -39,7 +39,9 @@ export class CharacterDetailsComponent implements OnDestroy {
           this.character = res;
         }
       })
+    
     })
+    
   }
 
 

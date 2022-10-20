@@ -1,4 +1,5 @@
 import { Component, Inject } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Locations } from 'src/app/modules/locations/store/modules/locations';
 
@@ -8,26 +9,34 @@ import { Locations } from 'src/app/modules/locations/store/modules/locations';
   styleUrls: ['./dialog-form-location.component.css']
 })
 export class DialogFormLocationComponent {
+  locationFormModel: FormGroup;
 
   constructor(
-    public dialogRef: MatDialogRef<DialogFormLocationComponent>,
-    // @Inject(MAT_DIALOG_DATA) public data: Locations,
-  ) { }
-  onSave(data: any) {
+    public dialogRef: MatDialogRef<DialogFormLocationComponent>) {
+    this.locationFormModel = new FormGroup({
+      url: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2)]),
+      name: new FormControl('', [
+        Validators.required,
+        Validators.minLength(5)]),
+      type: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3)]),
+      created: new FormControl('',
+        Validators.required)
+    })
+  }
+  onSubmit() {
+    console.log({
+      ...this.locationFormModel.value,
+      url: 'https://rickandmortyapi.com/api/location/' + this.locationFormModel.value.url
+    })
 
-    const newlocation = {
-      ...data,
-      url: 'https://rickandmortyapi.com/api/location/' + data.url
-    }
-    data.url = 'https://rickandmortyapi.com/api/location/' + data.url;
-    data.created = new Date();
-    data.confirm = true
-    console.log(data)
-
-
-    // this.dialogRef.close(data);
+  
+    // this.dialogRef.close(newlocation);
   }
   onCancel(): void {
-    this.dialogRef.close({ confirm: false });
+    this.dialogRef.close();
   }
 }

@@ -11,13 +11,15 @@ import { locationsReducer, LOCATIONS_REDUCER_NODE } from './store/locations.redu
 import { DialogFormLocationComponent } from 'src/app/components/dialog-form-location/dialog-form-location.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { LocationsRoutingModule } from './locations-routing.module';
 
 
 @NgModule({
   declarations: [
-
-    DialogFormLocationComponent, LocationsListComponent
+    DialogFormLocationComponent,
+    LocationsListComponent
   ],
   imports: [
     CommonModule,
@@ -28,8 +30,10 @@ import { LocationsRoutingModule } from './locations-routing.module';
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     MatListModule,
-    MatInputModule ,
+    MatInputModule,
     MatFormFieldModule
   ],
   exports: [
