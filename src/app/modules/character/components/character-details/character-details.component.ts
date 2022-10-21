@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { DialogConfirmComponent } from 'src/app/components/dialog-confirm/dialog-confirm.component';
 import { HttpReq } from 'src/app/http/http';
 import { Character } from '../../store/modules/characters';
-import { deleteCharacter, getCharacter, setNewCharacterInfo } from '../../store/character.action';
+import { deleteCharacter } from '../../store/character.action';
 
 @Component({
   selector: 'app-character-details',
@@ -25,26 +25,20 @@ export class CharacterDetailsComponent implements OnDestroy {
     this.loadCharacter();
   }
 
-
-
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
 
   loadCharacter() {
-    this.sub = this.route.params.subscribe(param => {
+    this.sub = this.route.params.subscribe(params => {
 
-      this.httpReq.getCharacter(+param['id']).subscribe((res: any) => {
+      this.httpReq.getCharacter(params['id']).subscribe((res: any) => {
         if (res) {
           this.character = res;
         }
       })
-    
     })
-    
   }
-
-
 
   deleteCharacterElement(id: number) {
     const dialogRef = this.dialog.open(DialogConfirmComponent);
@@ -56,3 +50,7 @@ export class CharacterDetailsComponent implements OnDestroy {
     })
   }
 }
+function details(id: string): any {
+  throw new Error('Function not implemented.');
+}
+

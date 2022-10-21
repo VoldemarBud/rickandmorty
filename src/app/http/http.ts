@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { take } from 'rxjs';
 
 
 @Injectable({
@@ -17,7 +16,7 @@ export class HttpReq {
         return this.http.get(this.characterUrl).pipe()
     }
 
-    getCharacter(id: number) {
+    getCharacter(id: string) {
         return this.http.get(`${this.characterUrl}/${id}`)
     }
 

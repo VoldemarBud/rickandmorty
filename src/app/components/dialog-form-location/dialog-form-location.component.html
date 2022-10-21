@@ -25,11 +25,11 @@
     <mat-form-field appearance="fill">
       <mat-label>created</mat-label>
       <input matInput formControlName="created"  [matDatepicker]="created">
-      <!-- <mat-hint>Required field !</mat-hint> -->
       <mat-datepicker-toggle matSuffix [for]="created"></mat-datepicker-toggle>
       <mat-datepicker #created></mat-datepicker>
+      <mat-hint>MM/DD/YYYY</mat-hint>
     </mat-form-field>
-    <button type="submit" [disabled]="!locationFormModel.valid" mat-button>Ok</button>
+    <button type="submit"  mat-button>Create</button>
   </form>
 </div>
 <div mat-dialog-actions>

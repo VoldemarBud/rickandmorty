@@ -19,42 +19,45 @@ export class DialogFormLocationComponent {
 
   private _createForm() {
     this.locationFormModel = this.dialogFormBuilder.group({
-      url: ['', [
-        Validators.required,
-        Validators.minLength(2)
-      ]],
-      name: ['', [
-        Validators.required,
-        Validators.minLength(4)
-      ]],
-      type: ['', [
-        Validators.required,
-        Validators.minLength(3)
-      ]],
-      created: ['', [Validators.required]]
+      url: ['', {
+        validators: [
+          Validators.required,
+          Validators.minLength(2),
+        ],
+        updateOn: 'submit'
+      }],
+      name: ['', {
+        validators: [
+          Validators.required,
+          Validators.minLength(4),
+        ],
+        updateOn: 'submit'
+      }],
+      type: ['',
+        {
+          validators: [
+            Validators.required,
+            Validators.minLength(3),
+          ],
+          updateOn: 'submit'
+        }],
+      created: ['', {
+        validators: [Validators.required],
+        updateOn: 'submit'
+      }]
     })
-       // this.locationFormModel = new FormGroup({
-    //   url: new FormControl('', [
-    //     Validators.required,
-    //     Validators.minLength(2)]),
-    //   name: new FormControl('', [
-    //     Validators.required,
-    //     Validators.minLength(4)]),
-    //   type: new FormControl('', [
-    //     Validators.required,
-    //     Validators.minLength(3)]),
-    //   created: new FormControl('',
-    //     Validators.required)
-    // })
   }
 
   onSubmit() {
-    console.log({
-      ...this.locationFormModel.value,
-      url: 'https://rickandmortyapi.com/api/location/' + this.locationFormModel.value.url
-    })
 
-    // this.dialogRef.close(newlocation);
+    if (this.locationFormModel.valid) {
+      this.dialogRef.close({
+        ...this.locationFormModel.value,
+        url: 'https://rickandmortyapi.com/api/location/' + this.locationFormModel.value.url
+      });
+
+      this.locationFormModel.reset()
+    }
   }
   onCancel(): void {
     this.dialogRef.close();

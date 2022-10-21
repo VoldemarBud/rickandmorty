@@ -13,7 +13,8 @@ import { LocationsRequestService } from './modules/locations/locations-request.s
 export class AppComponent implements OnInit {
 
 
-  constructor(private characterService: CharacterRequestService, private locationsService: LocationsRequestService) {
+  constructor(private characterService: CharacterRequestService,
+    private locationsService: LocationsRequestService) {
   }
   ngOnInit(): void {
     this.characterService.getList();

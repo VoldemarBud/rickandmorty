@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { getCharacters } from '../../store/character.selector';
 import { Character } from '../../store/modules/characters';
 
 
@@ -9,13 +11,13 @@ import { Character } from '../../store/modules/characters';
   styleUrls: ['./character-list.component.css']
 })
 export class CharacterListComponent {
-  characters: Character[] = [];
+  characters$: Observable<Character[]>
 
   constructor(private store$: Store<any>) {
-    this.store$.select('characters').subscribe(data => {
-      this.characters = data.charactersList
-    });
+    this.characters$ = this.store$.select(getCharacters)
   }
-
+   // this.store$.select('characters').subscribe(data => {
+    //   this.characters = data.charactersList
+    // });
 }
 

@@ -8,6 +8,8 @@ import { DialogLocationInfoComponent } from 'src/app/components/dialog-location-
 import { Locations } from '../../store/modules/locations';
 
 import { addNewLocation, deleteLocation } from '../../store/locations.actions';
+import { Observable } from 'rxjs';
+import { getCharacters } from '../../store/locations.selector';
 
 @Component({
   selector: 'app-locations-list',
@@ -15,15 +17,16 @@ import { addNewLocation, deleteLocation } from '../../store/locations.actions';
   styleUrls: ['./locations-list.component.css']
 })
 export class LocationsListComponent {
-  locations: Locations[] = [];
-  location: Locations
+  // locations: Locations[] = [];
+  locations$: Observable<Locations[]>
 
   constructor(private store$: Store<any>,
     public dialog: MatDialog,
     private router: Router) {
-    this.store$.select('locations').subscribe(data => {
-      this.locations = data.locationsList
-    });
+      this.locations$ = this.store$.select(getCharacters)
+    // this.store$.select('locations').subscribe(data => {
+    //   this.locations = data.locationsList
+    // });
   }
 
 
@@ -33,13 +36,11 @@ export class LocationsListComponent {
       width: '300px'
     });
 
-
     dialogRef.afterClosed().subscribe(data => {
       if (data) {
         this.store$.dispatch(addNewLocation({ data }));
       }
     });
-
   }
 
   deleteLocationElement(id: number) {
