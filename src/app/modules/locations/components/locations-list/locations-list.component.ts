@@ -9,7 +9,7 @@ import { Locations } from '../../store/modules/locations';
 
 import { addNewLocation, deleteLocation } from '../../store/locations.actions';
 import { Observable } from 'rxjs';
-import { getCharacters } from '../../store/locations.selector';
+import { getLocations } from '../../store/locations.selector';
 
 @Component({
   selector: 'app-locations-list',
@@ -17,16 +17,14 @@ import { getCharacters } from '../../store/locations.selector';
   styleUrls: ['./locations-list.component.css']
 })
 export class LocationsListComponent {
-  // locations: Locations[] = [];
-  locations$: Observable<Locations[]>
 
+  locations$: Observable<Locations[]>
+  
   constructor(private store$: Store<any>,
     public dialog: MatDialog,
     private router: Router) {
-      this.locations$ = this.store$.select(getCharacters)
-    // this.store$.select('locations').subscribe(data => {
-    //   this.locations = data.locationsList
-    // });
+
+    this.locations$ = this.store$.select(getLocations)
   }
 
 

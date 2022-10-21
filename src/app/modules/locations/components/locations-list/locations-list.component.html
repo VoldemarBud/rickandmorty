@@ -2,7 +2,7 @@
     <button class="create" (click)="addNewLocationElement()">Add new Location</button>
     <mat-divider></mat-divider>
     <mat-list-item *ngFor="let location of locations$|async;let i = index" role="listitem">
-        <p mat-button (click)="openDialog(locations[i])">{{i+1}} - {{location.url}}</p> <button
+        <p mat-button (click)="openDialog(location)">{{i+1}} - {{location.url}}</p> <button
             (click)="deleteLocationElement(location.id)" mat-button>X</button>
         <mat-divider></mat-divider>
     </mat-list-item>

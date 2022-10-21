@@ -50,7 +50,5 @@ export class CharacterDetailsComponent implements OnDestroy {
     })
   }
 }
-function details(id: string): any {
-  throw new Error('Function not implemented.');
-}
+
 
