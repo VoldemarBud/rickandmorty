@@ -20,9 +20,7 @@ export const locationsReducer = createReducer(
     on(deleteLocation, (state, { id }) => {
         return locationsAdapter.removeOne(id, state)
     }),
-    on(addNewLocation, (state, action) => {
-        return locationsAdapter.addOne(action.data, {
-          ...state
-        });
-      }),
+    on(addNewLocation, (state, { data }) => {
+        return locationsAdapter.addOne(data, state);
+    }),
 );

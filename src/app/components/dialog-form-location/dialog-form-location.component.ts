@@ -52,6 +52,7 @@ export class DialogFormLocationComponent {
 
     if (this.locationFormModel.valid) {
       this.dialogRef.close({
+        id:this.locationFormModel.value.url,
         ...this.locationFormModel.value,
         url: 'https://rickandmortyapi.com/api/location/' + this.locationFormModel.value.url
       });

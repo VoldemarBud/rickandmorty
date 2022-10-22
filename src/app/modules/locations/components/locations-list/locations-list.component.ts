@@ -8,7 +8,7 @@ import { DialogLocationInfoComponent } from 'src/app/components/dialog-location-
 import { Locations } from '../../store/modules/locations';
 
 import { addNewLocation, deleteLocation } from '../../store/locations.actions';
-import { Observable } from 'rxjs';
+import {  Observable } from 'rxjs';
 import { getLocations } from '../../store/locations.selector';
 
 @Component({
@@ -19,11 +19,9 @@ import { getLocations } from '../../store/locations.selector';
 export class LocationsListComponent {
 
   locations$: Observable<Locations[]>
-  
   constructor(private store$: Store<any>,
     public dialog: MatDialog,
     private router: Router) {
-
     this.locations$ = this.store$.select(getLocations)
   }
 
@@ -51,6 +49,7 @@ export class LocationsListComponent {
   }
 
   openDialog(data: Locations) {
+
     this.dialog.open(DialogLocationInfoComponent, { data });
   }
 }
