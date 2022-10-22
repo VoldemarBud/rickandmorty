@@ -1,8 +1,10 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { CharactersState, CHARACTER_REDUCER_NODE } from "./character.reducer";
+import { charactersAdapter, CHARACTER_REDUCER_NODE, CharactersState } from "./character.reducer";
 
 export const getCharactersState = createFeatureSelector<CharactersState>(CHARACTER_REDUCER_NODE);
 
-export const getCharacters = createSelector(getCharactersState, (state) => {
-    return state.charactersList
-})
+const charactersSelectors = charactersAdapter.getSelectors();
+
+export const getCharacters = createSelector(getCharactersState, charactersSelectors.selectAll)
+
+export const getCharactersEntities = createSelector(getCharactersState, charactersSelectors.selectEntities)

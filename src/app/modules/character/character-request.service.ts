@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { HttpReq } from 'src/app/http/http';
-import { getCharacters } from './store/character.action';
+import { loadCharacters } from './store/character.action';
 
 
 
@@ -14,7 +14,7 @@ export class CharacterRequestService {
         this.httpReq.getCharacters().subscribe((res: any) => {
             if (res?.results?.length) {
                 const { info, results } = res;
-                this.store$.dispatch(getCharacters({ data: results }));
+                this.store$.dispatch(loadCharacters({ characters: results }));
             }
         })
     }

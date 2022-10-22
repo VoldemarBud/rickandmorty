@@ -28,7 +28,6 @@ export class LocationsListComponent {
   }
 
 
-
   addNewLocationElement() {
     const dialogRef = this.dialog.open(DialogFormLocationComponent, {
       width: '300px'
