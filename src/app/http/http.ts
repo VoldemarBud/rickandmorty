@@ -12,7 +12,7 @@ export class HttpReq {
     constructor(private http: HttpClient) { }
 
 
-    getCharacterList() {
+    getCharacters() {
         return this.http.get(this.characterUrl).pipe()
     }
 

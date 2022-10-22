@@ -1,8 +1,8 @@
 import { createAction, props } from "@ngrx/store";
 import { Character } from "./modules/characters";
 
-export const getCharacterList = createAction('[CHARACTER] get character list',
-    props<{ data: Character[] }>()
+export const loadCharacters = createAction('[CHARACTER] get character list',
+    props<{ characters: Character[] }>()
 );
 
 export const getCharacter = createAction('[CHARACTER] get character',
