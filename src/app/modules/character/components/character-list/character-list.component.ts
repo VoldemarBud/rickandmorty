@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { CharactersState } from '../../store/character.reducer';
 import { getCharacters } from '../../store/character.selector';
+import { Character } from '../../store/modules/characters';
 
 @Component({
   selector: 'app-character-list',
@@ -10,7 +11,7 @@ import { getCharacters } from '../../store/character.selector';
   styleUrls: ['./character-list.component.css']
 })
 export class CharacterListComponent implements OnInit {
-  characters$: Observable<any>
+  characters$: Observable<Character[]>
 
   constructor(private store$: Store<CharactersState>) {
   }

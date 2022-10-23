@@ -8,7 +8,7 @@ import { DialogLocationInfoComponent } from 'src/app/components/dialog-location-
 import { Locations } from '../../store/modules/locations';
 
 import { addNewLocation, deleteLocation } from '../../store/locations.actions';
-import {  Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { getLocations } from '../../store/locations.selector';
 
 @Component({
@@ -30,7 +30,6 @@ export class LocationsListComponent {
     const dialogRef = this.dialog.open(DialogFormLocationComponent, {
       width: '300px'
     });
-
     dialogRef.afterClosed().subscribe(data => {
       if (data) {
         this.store$.dispatch(addNewLocation({ data }));
