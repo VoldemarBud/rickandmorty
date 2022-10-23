@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { DialogConfirmComponent } from 'src/app/components/dialog-confirm/dialog-confirm.component';
 import { DialogFormLocationComponent } from 'src/app/components/dialog-form-location/dialog-form-location.component';
 import { DialogLocationInfoComponent } from 'src/app/components/dialog-location-info/dialog-location-info.component';
-import { Locations } from '../../store/modules/locations';
+import { Locations } from '../../store/models/locations';
 
 import { addNewLocation, deleteLocation } from '../../store/locations.actions';
 import { Observable } from 'rxjs';

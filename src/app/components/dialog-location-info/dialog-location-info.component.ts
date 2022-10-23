@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Locations } from 'src/app/modules/locations/store/modules/locations';
+import { Locations } from 'src/app/modules/locations/store/models/locations';
 
 @Component({
   selector: 'app-dialog-location-info',

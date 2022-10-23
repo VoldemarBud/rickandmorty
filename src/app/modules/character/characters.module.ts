@@ -6,9 +6,9 @@ import { MatGridListModule } from '@angular/material/grid-list'
 import { MatCardModule } from '@angular/material/card';
 import { StoreModule } from '@ngrx/store';
 import { charactersReducer, CHARACTER_REDUCER_NODE } from './store/character.reducer';
-
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CharacterRoutingModule } from './character-routing.module';
+import { EffectsModule } from '@ngrx/effects';
+import { CharactersEffects } from './store/character.effects';
 
 
 @NgModule({
@@ -20,12 +20,11 @@ import { CharacterRoutingModule } from './character-routing.module';
     CommonModule,
     MatCardModule,
     MatGridListModule,
-    // FormsModule,                      
-    // ReactiveFormsModule,
     CharacterRoutingModule,
     StoreModule.forFeature(
       CHARACTER_REDUCER_NODE,
-      charactersReducer)
+      charactersReducer),
+    EffectsModule.forFeature([CharactersEffects])
   ],
   exports: [
     CharacterListComponent,

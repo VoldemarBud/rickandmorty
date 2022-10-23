@@ -1,8 +1,6 @@
-import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Locations } from 'src/app/modules/locations/store/modules/locations';
-
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-dialog-form-location',
   templateUrl: './dialog-form-location.component.html',

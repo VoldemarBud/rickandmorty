@@ -1,5 +1,5 @@
 
-import { Character } from "./modules/characters";
+import { Character } from "./models/characters";
 import { deleteCharacter, loadCharacters } from "./character.action";
 import { createReducer, on } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';

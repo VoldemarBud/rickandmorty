@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { Locations } from "./modules/locations";
+import { Locations } from "./models/locations";
 
 
 export const getLocationsList = createAction('[LOCATIONS] get locations list',

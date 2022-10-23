@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { Locations } from "./modules/locations";
+import { Locations } from "./models/locations";
 import { addNewLocation, deleteLocation, getLocationsList } from "./locations.actions";
 import { createEntityAdapter, EntityAdapter, EntityState } from "@ngrx/entity";
 

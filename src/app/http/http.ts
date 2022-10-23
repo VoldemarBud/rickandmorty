@@ -13,7 +13,7 @@ export class HttpReq {
 
 
     getCharacters() {
-        return this.http.get(this.characterUrl).pipe()
+        return this.http.get(this.characterUrl)
     }
 
     getCharacter(id: string) {
