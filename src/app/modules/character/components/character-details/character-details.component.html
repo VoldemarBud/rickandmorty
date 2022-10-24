@@ -5,7 +5,7 @@
     <mat-grid-tile>
         <div>
             <p>
-                Name: {{(character$ |async)?.name}},
+                Name: {{(character$ |async)?.name}}
             </p>
             <p>
                 Status: {{(character$ |async)?.status}}
@@ -28,7 +28,6 @@
                 {{(character$ |async)?.location.url}}
                 <!-- <a routerLink="/location-list"> {{character$?.location?.url}}</a> -->
             </p>
-
 
             <button (click)="deleteCharacterElement()" mat-button>delete</button>
         </div>
