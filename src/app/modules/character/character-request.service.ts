@@ -13,20 +13,20 @@ export class CharacterRequestService {
     }
     getList() {
 
-        this.httpReq.getCharacters().pipe(
-            map((data: any) => {
-                const characters: Character[] = [];
-                for (let key in data) {
-                    characters.push({ ...data[key], id: key });
-                }
-                return characters;
-            })
-        );
-        // this.httpReq.getCharacters().subscribe((res: any) => {
-        //     if (res?.results?.length) {
-        //         const { info, results } = res;
-        //         this.store$.dispatch(loadCharacters({ characters: results }));
-        //     }
-        // })
+        // this.httpReq.getCharacters().pipe(
+        //     map((data: any) => {
+        //         const characters: Character[] = [];
+        //         for (let key in data) {
+        //             characters.push({ ...data[key], id: key });
+        //         }
+        //         return characters;
+        //     })
+        // );
+        this.httpReq.getCharacters().subscribe((res: any) => {
+            if (res?.results?.length) {
+                const { info, results } = res;
+                this.store$.dispatch(loadCharacters({ characters: results }));
+            }
+        })
     }
 }
