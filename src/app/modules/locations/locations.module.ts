@@ -14,6 +14,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { LocationsRoutingModule } from './locations-routing.module';
+import { EffectsModule } from '@ngrx/effects';
+import { LocationsEffect } from './store/locations.effects';
 
 
 @NgModule({
@@ -34,7 +36,8 @@ import { LocationsRoutingModule } from './locations-routing.module';
     MatDatepickerModule,
     MatListModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    EffectsModule.forFeature([LocationsEffect])
   ],
   exports: [
     DialogFormLocationComponent, LocationsListComponent

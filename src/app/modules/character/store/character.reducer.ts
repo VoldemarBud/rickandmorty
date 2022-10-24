@@ -1,6 +1,6 @@
 
 import { Character } from "./models/characters";
-import { deleteCharacter, loadCharacters } from "./character.action";
+import { DeleteCharacter, CharactersLoadedSuccess } from "./character.action";
 import { createReducer, on } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
@@ -15,10 +15,10 @@ export const initialCharactersState: CharactersState = charactersAdapter.getInit
 
 export const charactersReducer = createReducer(
     initialCharactersState,
-    on(loadCharacters, (state, { characters }) => {
+    on(CharactersLoadedSuccess, (state, { characters }) => {
         return charactersAdapter.setAll(characters, state)
     }),
-    on(deleteCharacter, (state, { id }) => {
+    on(DeleteCharacter, (state, { id }) => {
         return charactersAdapter.removeOne(id, state)
     }),
 );

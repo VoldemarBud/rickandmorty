@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { CharactersState } from '../../store/character.reducer';
-import { getCharacters } from '../../store/character.selector';
+import { getCharactersList } from '../../store/character.selector';
 import { Character } from '../../store/models/characters';
 
 @Component({
@@ -10,16 +9,13 @@ import { Character } from '../../store/models/characters';
   templateUrl: './character-list.component.html',
   styleUrls: ['./character-list.component.css']
 })
-export class CharacterListComponent implements OnInit {
-  characters$: Observable<Character[]> = this.store$.pipe(
-    select(getCharacters)
+export class CharacterListComponent  {
+  characters$: Observable<Character[]> = this.store.pipe(
+    select(getCharactersList)
   )
 
-  constructor(private store$: Store<CharactersState>) {
+  constructor(private store: Store) {
   }
-  ngOnInit(): void {
-    // this.characters$ =  this.store$.select(getCharacters)
-  }
-  
+ 
 }
 

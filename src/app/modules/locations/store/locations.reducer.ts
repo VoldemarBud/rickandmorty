@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { Locations } from "./models/locations";
-import { addNewLocation, deleteLocation, getLocationsList } from "./locations.actions";
+import { addNewLocation, deleteLocation, LocationsLoadedSuccess } from "./locations.actions";
 import { createEntityAdapter, EntityAdapter, EntityState } from "@ngrx/entity";
 
 export const LOCATIONS_REDUCER_NODE = 'locations';
@@ -14,13 +14,13 @@ export const initialLocationsState: LocationsState = locationsAdapter.getInitial
 
 export const locationsReducer = createReducer(
     initialLocationsState,
-    on(getLocationsList, (state, { data }) => {
-        return locationsAdapter.setAll(data, state)
+    on(LocationsLoadedSuccess, (state, { locations }) => {
+        return locationsAdapter.setAll(locations, state)
     }),
     on(deleteLocation, (state, { id }) => {
         return locationsAdapter.removeOne(id, state)
     }),
-    on(addNewLocation, (state, { data }) => {
-        return locationsAdapter.addOne(data, state);
+    on(addNewLocation, (state, { locations }) => {
+        return locationsAdapter.addOne(locations, state);
     }),
 );

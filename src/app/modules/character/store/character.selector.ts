@@ -5,6 +5,6 @@ export const getCharactersState = createFeatureSelector<CharactersState>(CHARACT
 
 const charactersSelectors = charactersAdapter.getSelectors();
 
-export const getCharacters = createSelector(getCharactersState, charactersSelectors.selectAll)
+export const getCharactersList = createSelector(getCharactersState, charactersSelectors.selectAll)
 
 export const getCharactersEntities = createSelector(getCharactersState, charactersSelectors.selectEntities)

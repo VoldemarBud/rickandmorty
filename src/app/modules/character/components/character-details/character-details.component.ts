@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { DialogConfirmComponent } from 'src/app/components/dialog-confirm/dialog-confirm.component';
 import { HttpReq } from 'src/app/http/http';
 import { Character } from '../../store/models/characters';
-import { deleteCharacter } from '../../store/character.action';
+import { DeleteCharacter } from '../../store/character.action';
 
 @Component({
   selector: 'app-character-details',
@@ -44,7 +44,7 @@ export class CharacterDetailsComponent implements OnDestroy {
     const dialogRef = this.dialog.open(DialogConfirmComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.store$.dispatch(deleteCharacter({ id }));
+        this.store$.dispatch(DeleteCharacter({ id }));
         this.router.navigate(['/']);
       }
     })

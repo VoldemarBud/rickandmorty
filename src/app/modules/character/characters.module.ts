@@ -8,6 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { charactersReducer, CHARACTER_REDUCER_NODE } from './store/character.reducer';
 import { CharacterRoutingModule } from './character-routing.module';
 import { EffectsModule } from '@ngrx/effects';
+import { CharactersEffects } from './store/character.effects';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { EffectsModule } from '@ngrx/effects';
     StoreModule.forFeature(
       CHARACTER_REDUCER_NODE,
       charactersReducer),
-    // EffectsModule.forFeature([CharactersEffects])
+    EffectsModule.forFeature([CharactersEffects])
   ],
   exports: [
     CharacterListComponent,

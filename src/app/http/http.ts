@@ -21,6 +21,6 @@ export class HttpReq {
     }
 
     getLocationsList() {
-        return this.http.get(this.locationUrl).pipe()
+        return this.http.get(this.locationUrl)
     }
 }
