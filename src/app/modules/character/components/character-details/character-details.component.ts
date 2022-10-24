@@ -1,10 +1,8 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { DialogConfirmComponent } from 'src/app/components/dialog-confirm/dialog-confirm.component';
-import { HttpReq } from 'src/app/http/http';
-import { Character } from '../../store/models/characters';
 import { DeleteCharacter } from '../../store/character.action';
 import { CharacterRequestService } from '../../character-request.service';
 import { map, Observable, switchMap } from 'rxjs';
@@ -16,7 +14,7 @@ import { map, Observable, switchMap } from 'rxjs';
 })
 export class CharacterDetailsComponent {
   id$ = this.route.params.pipe(map((params: any) => params['id']))
-  
+
   character$: Observable<any> = this.id$.pipe(
     switchMap((id: string) => this.charactersService.getCharacter(id))
   )
