@@ -9,5 +9,9 @@ export class CharacterRequestService {
     }
     getList() {
         return this.httpReq.getCharacters();
-     }
+    }
+
+    getCharacter(id: string | number) {
+        return this.httpReq.getCharacter(id);
+    }
 }

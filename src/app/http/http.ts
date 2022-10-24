@@ -16,7 +16,7 @@ export class HttpReq {
         return this.http.get(this.characterUrl)
     }
 
-    getCharacter(id: string) {
+    getCharacter(id: string|number) {
         return this.http.get(`${this.characterUrl}/${id}`)
     }
 

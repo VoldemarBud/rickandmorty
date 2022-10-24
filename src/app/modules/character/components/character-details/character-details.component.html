@@ -1,37 +1,39 @@
-<mat-grid-list *ngIf="character " cols="3" gutterSize="10px">
+<mat-grid-list *ngIf="character$|async " cols="3" gutterSize="10px">
     <mat-grid-tile>
-        <img mat-card-image [src]="character.image" [alt]="character.name">
+        <img mat-card-image [src]="(character$ |async)?.image" [alt]="(character$ |async)?.name">
     </mat-grid-tile>
     <mat-grid-tile>
         <div>
-                <p>
-                    Name: {{character.name}}
-                </p>
-                <p>
-                    Status: {{character.status}}
-                </p>
-                <p>
-                    species: {{character.species}}
-                </p>
-                <p>
-                    gender: {{character.gender}}
-                </p>
-            
-                <p>
-                    created: {{character.created|date:'yyyy-MM-dd'}}
-                </p>
-                <p>
-                    Last known location: {{character.location.name}}
-                </p>
+            <p>
+                Name: {{(character$ |async)?.name}},
+            </p>
+            <p>
+                Status: {{(character$ |async)?.status}}
+            </p>
+            <p>
+                species: {{(character$ |async)?.species}}
+            </p>
+            <p>
+                gender: {{(character$ |async)?.gender}}
+            </p>
 
-                <p>
-                    {{character.location.url}}
-                    <!-- <a routerLink="/location-list"> {{character?.location?.url}}</a> -->
-                </p>
-            <button (click)="deleteCharacterElement(character.id)" mat-button>delete</button>
+            <p>
+                created: {{(character$ |async)?.created|date:'yyyy-MM-dd'}}
+            </p>
+            <p>
+                Last known location: {{(character$ |async)?.location.name}}
+            </p>
+
+            <p>
+                {{(character$ |async)?.location.url}}
+                <!-- <a routerLink="/location-list"> {{character$?.location?.url}}</a> -->
+            </p>
+
+
+            <button (click)="deleteCharacterElement()" mat-button>delete</button>
         </div>
     </mat-grid-tile>
 </mat-grid-list>
-<mat-grid-list cols="1" *ngIf="!character">
+<mat-grid-list cols="1" *ngIf="!character$">
     <p> No Data...</p>
 </mat-grid-list>

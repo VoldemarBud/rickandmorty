@@ -11,7 +11,7 @@ import { } from "./locations.selector";
 @Injectable()
 export class LocationsEffect {
     @Effect({dispatch: false})
-    loadArticles$ = this.actions$.pipe(
+    loadLocations$ = this.actions$.pipe(
         ofType(LocationsLoad),
         mergeMap(() =>
             this.locationsService.getList().pipe(
