@@ -6,6 +6,7 @@ import { DialogConfirmComponent } from 'src/app/components/dialog-confirm/dialog
 import { DeleteCharacter } from '../../store/character.action';
 import { CharacterRequestService } from '../../character-request.service';
 import { map, Observable, switchMap } from 'rxjs';
+import { Character } from '../../store/models/characters';
 
 @Component({
   selector: 'app-character-details',
@@ -15,7 +16,7 @@ import { map, Observable, switchMap } from 'rxjs';
 export class CharacterDetailsComponent {
   id$ = this.route.params.pipe(map((params: any) => params['id']))
 
-  character$: Observable<any> = this.id$.pipe(
+  character$: Observable<Character|any> = this.id$.pipe(
     switchMap((id: string) => this.charactersService.getCharacter(id))
   )
 
