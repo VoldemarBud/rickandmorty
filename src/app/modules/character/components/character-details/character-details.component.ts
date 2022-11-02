@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { DialogConfirmComponent } from 'src/app/components/dialog-confirm/dialog-confirm.component';
 import { DeleteCharacter } from '../../store/character.action';
@@ -14,18 +14,18 @@ import { Character } from '../../store/models/characters';
   styleUrls: ['./character-details.component.css']
 })
 export class CharacterDetailsComponent {
-  id$ = this.route.params.pipe(map((params: any) => params['id']))
+  id$ = this.route.params.pipe(map((params: Params) => params['id']))
 
   character$: Observable<Character|any> = this.id$.pipe(
     switchMap((id: string) => this.charactersService.getCharacter(id))
   )
-
   constructor(private store$: Store<any>,
     private router: Router,
     private route: ActivatedRoute,
     public dialog: MatDialog,
     private charactersService: CharacterRequestService) {
   }
+
 
   deleteCharacterElement() {
     const dialogRef = this.dialog.open(DialogConfirmComponent);
@@ -41,6 +41,3 @@ export class CharacterDetailsComponent {
     })
   }
 }
-
-
-
