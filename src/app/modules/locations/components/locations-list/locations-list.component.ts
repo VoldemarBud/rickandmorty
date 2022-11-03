@@ -18,9 +18,8 @@ import { getLocationsList } from '../../store/locations.selector';
 })
 export class LocationsListComponent {
 
-  locations$: Observable<Locations[]> = this.store.pipe(
-    select(getLocationsList)
-  )
+  locations$: Observable<Locations[]> = this.store.select(getLocationsList)
+  
   constructor(private store: Store,
     public dialog: MatDialog,
     private router: Router) {

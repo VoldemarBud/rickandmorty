@@ -10,9 +10,7 @@ import { Character } from '../../store/models/characters';
   styleUrls: ['./character-list.component.css']
 })
 export class CharacterListComponent  {
-  characters$: Observable<Character[]> = this.store.pipe(
-    select(getCharactersList)
-  )
+  characters$: Observable<Character[]> = this.store.select(getCharactersList)
 
   constructor(private store: Store) {
   }
