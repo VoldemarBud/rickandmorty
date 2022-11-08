@@ -9,7 +9,6 @@ import { charactersReducer, CHARACTER_REDUCER_NODE } from './store/character.red
 import { CharacterRoutingModule } from './character-routing.module';
 import { EffectsModule } from '@ngrx/effects';
 import { CharactersEffects } from './store/character.effects';
-import { CharacterRequestService } from './store/character-request.service';
 
 @NgModule({
   declarations: [
