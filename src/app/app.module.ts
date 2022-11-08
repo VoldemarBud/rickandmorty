@@ -20,8 +20,6 @@ import { DialogLocationInfoComponent } from './components/dialog-location-info/d
 
 import { LocationsModule } from './modules/locations/locations.module';
 import { CharactersModule } from './modules/character/characters.module';
-import { CharacterRequestService } from './modules/character/character-request.service';
-import { LocationsRequestService } from './modules/locations/locations-request.service';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
@@ -46,8 +44,6 @@ import { AppRoutingModule } from './app-routing.module';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([])
   ],
-  providers: [{ provide: CharacterRequestService, useClass: CharacterRequestService },
-    { provide: LocationsRequestService, useClass: LocationsRequestService } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

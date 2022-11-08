@@ -25,7 +25,7 @@ import { CharacterRequestService } from './store/character-request.service';
       CHARACTER_REDUCER_NODE,
       charactersReducer),
     EffectsModule.forFeature([CharactersEffects])
-  ],  providers: [{ provide: CharacterRequestService, useClass: CharacterRequestService }],
+  ], 
   exports: [
     CharacterListComponent,
     CharacterDetailsComponent

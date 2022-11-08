@@ -40,8 +40,6 @@ import { LocationsRequestService } from './store/locations-request.service';
     MatFormFieldModule,
     EffectsModule.forFeature([LocationsEffect])
   ],
-  providers: [
-    { provide: LocationsRequestService, useClass: LocationsRequestService } ],
   exports: [
     DialogFormLocationComponent, LocationsListComponent
   ]
