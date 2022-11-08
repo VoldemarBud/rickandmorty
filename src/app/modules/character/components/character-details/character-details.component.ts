@@ -4,7 +4,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { DialogConfirmComponent } from 'src/app/components/dialog-confirm/dialog-confirm.component';
 import { DeleteCharacter } from '../../store/character.action';
-import { CharacterRequestService } from '../../character-request.service';
+import { CharacterRequestService } from '../../store/character-request.service';
 import { map, Observable, switchMap } from 'rxjs';
 import { Character } from '../../store/models/characters';
 

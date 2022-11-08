@@ -5,8 +5,9 @@ import { CharacterListComponent } from './components/character-list/character-li
 
 const routes: Routes = [
     {
-        path: ' ',
-        redirectTo: 'character-list'
+        path: '',
+        redirectTo: 'character-list',
+        pathMatch: 'full'
     },
     {
         path: 'character-list',

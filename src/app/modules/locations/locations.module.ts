@@ -16,6 +16,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { LocationsRoutingModule } from './locations-routing.module';
 import { EffectsModule } from '@ngrx/effects';
 import { LocationsEffect } from './store/locations.effects';
+import { LocationsRequestService } from './store/locations-request.service';
 
 
 @NgModule({
@@ -39,6 +40,8 @@ import { LocationsEffect } from './store/locations.effects';
     MatFormFieldModule,
     EffectsModule.forFeature([LocationsEffect])
   ],
+  providers: [
+    { provide: LocationsRequestService, useClass: LocationsRequestService } ],
   exports: [
     DialogFormLocationComponent, LocationsListComponent
   ]

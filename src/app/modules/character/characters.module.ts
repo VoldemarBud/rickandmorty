@@ -9,6 +9,7 @@ import { charactersReducer, CHARACTER_REDUCER_NODE } from './store/character.red
 import { CharacterRoutingModule } from './character-routing.module';
 import { EffectsModule } from '@ngrx/effects';
 import { CharactersEffects } from './store/character.effects';
+import { CharacterRequestService } from './store/character-request.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { CharactersEffects } from './store/character.effects';
       CHARACTER_REDUCER_NODE,
       charactersReducer),
     EffectsModule.forFeature([CharactersEffects])
-  ],
+  ],  providers: [{ provide: CharacterRequestService, useClass: CharacterRequestService }],
   exports: [
     CharacterListComponent,
     CharacterDetailsComponent

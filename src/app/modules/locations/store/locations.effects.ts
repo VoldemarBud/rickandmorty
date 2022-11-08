@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from "@ngrx/store";
 import { map, mergeMap } from "rxjs";
-import { LocationsRequestService } from "../locations-request.service";
+import { LocationsRequestService } from "./locations-request.service";
 
 import { LocationsLoad, LocationsLoadedSuccess } from "./locations.actions";
 import { } from "./locations.selector";
