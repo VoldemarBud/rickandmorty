@@ -1,17 +1,18 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpReq } from 'src/app/http/http';
 
 
 @Injectable()
 export class CharacterRequestService {
+    readonly characterUrl = 'https://rickandmortyapi.com/api/character/';
     constructor(
-        private httpReq: HttpReq) {
+        private httpReq: HttpClient) {
     }
-    getList() {
-        return this.httpReq.getCharacters();
+    getCharactersList() {
+        return this.httpReq.get(this.characterUrl)
     }
 
-    getCharacter(id: string | number) {
-        return this.httpReq.getCharacter(id);
+    getCharacter(id: string|number) {
+        return this.httpReq.get(`${this.characterUrl}/${id}`)
     }
 }

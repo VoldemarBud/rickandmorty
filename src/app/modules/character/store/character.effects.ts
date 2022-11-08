@@ -15,7 +15,7 @@ export class CharactersEffects {
             () => this.actions$.pipe(
                 ofType(CharactersLoad),
                 mergeMap(() =>
-                    this.charactersService.getList().pipe(
+                    this.charactersService.getCharactersList().pipe(
                         map((res: any) => {
                             if (res?.results?.length) {
                                 const { info, results } = res;
