@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LocationsModule } from '../locations.module';
-
 
 @Injectable({providedIn:'root'})
 export class LocationsRequestService {
