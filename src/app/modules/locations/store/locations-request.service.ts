@@ -1,15 +1,15 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { HttpReq } from 'src/app/http/http';
-
 
 
 @Injectable()
 export class LocationsRequestService {
+    readonly locationUrl = 'https://rickandmortyapi.com/api/location';
+
     constructor(
-        private httpReq: HttpReq) {
+        private httpReq: HttpClient) {
     }
-    getList() {
-        return this.httpReq.getLocationsList();
+    getLocationsList() {
+        return this.httpReq.get(this.locationUrl)
     }
 }

@@ -15,7 +15,7 @@ export class LocationsEffect {
         () => this.actions$.pipe(
             ofType(LocationsLoad),
             mergeMap(() =>
-                this.locationsService.getList().pipe(
+                this.locationsService.getLocationsList().pipe(
                     map((res: any) => {
                         if (res?.results?.length) {
                             const { info, results } = res;
